@@ -2,6 +2,4 @@ package csv
 
 import "errors"
 
-var (
-	ErrEmptyContent = errors.New("empty content")
-)
+var ErrEmptyContent = errors.New("empty content")
