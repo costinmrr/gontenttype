@@ -6,7 +6,7 @@ import (
 	"github.com/costinmrr/gontenttype/types/xml"
 )
 
-func GetContentType(content string) ContentType {
+func Detect(content string) ContentType {
 	err := json.IsJSON(content)
 	if err == nil {
 		return JSON
