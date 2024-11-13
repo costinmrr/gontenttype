@@ -1,8 +1,10 @@
 # gontenttype
 1. **Detect the content type of a given string**
+
    1. JSON (`application/json`)
    2. XML (`application/xml`)
    3. CSV (`text/csv`)
+
 2. **Validate syntax for a given string and supported content types**
 
 
@@ -17,7 +19,8 @@ package main
 
 import (
 	"fmt"
-    "github.com/costinmrr/gontenttype"
+    
+	"github.com/costinmrr/gontenttype"
 )
 
 func main() { 
@@ -54,8 +57,9 @@ text/csv
 package main
 
 import (
-    "fmt"
-    "github.com/costinmrr/gontenttype/types/json"
+	"fmt"
+	
+	"github.com/costinmrr/gontenttype/types/json"
 	"github.com/costinmrr/gontenttype/types/xml"
 	"github.com/costinmrr/gontenttype/types/csv"
 )
