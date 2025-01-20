@@ -1,6 +1,9 @@
 package gontenttype
 
-import "testing"
+import (
+	"os"
+	"testing"
+)
 
 func TestDetect(t *testing.T) {
 	type args struct {
@@ -48,5 +51,180 @@ func TestDetect(t *testing.T) {
 				t.Errorf("Detect() = %v, want %v", got, tt.want)
 			}
 		})
+	}
+}
+
+// Benchmarks
+func BenchmarkDetectJSON_SimpleString(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		Detect("{\"foo\":\"bar\"}")
+	}
+}
+
+func BenchmarkDetectJSON_1KB(b *testing.B) {
+	content, _ := os.ReadFile("testdata/json_1KB.json")
+	contentString := string(content)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		Detect(contentString)
+	}
+}
+
+func BenchmarkDetectJSON_100KB(b *testing.B) {
+	content, _ := os.ReadFile("testdata/json_100KB.json")
+	contentString := string(content)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		Detect(contentString)
+	}
+}
+
+func BenchmarkDetectJSON_1MB(b *testing.B) {
+	content, _ := os.ReadFile("testdata/json_1MB.json")
+	contentString := string(content)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		Detect(contentString)
+	}
+}
+
+func BenchmarkDetectJSON_10MB(b *testing.B) {
+	content, _ := os.ReadFile("testdata/json_10MB.json")
+	contentString := string(content)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		Detect(contentString)
+	}
+}
+
+func BenchmarkDetectJSONLines_SimpleString(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		Detect("{\"foo\":\"bar\"}\n{\"baz\":\"qux\"}")
+	}
+}
+
+func BenchmarkDetectJSONLines_1KB(b *testing.B) {
+	content, _ := os.ReadFile("testdata/json_lines_1KB.json")
+	contentString := string(content)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		Detect(contentString)
+	}
+}
+
+func BenchmarkDetectJSONLines_100KB(b *testing.B) {
+	content, _ := os.ReadFile("testdata/json_lines_100KB.json")
+	contentString := string(content)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		Detect(contentString)
+	}
+}
+
+func BenchmarkDetectJSONLines_1MB(b *testing.B) {
+	content, _ := os.ReadFile("testdata/json_lines_1MB.json")
+	contentString := string(content)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		Detect(contentString)
+	}
+}
+
+func BenchmarkDetectJSONLines_10MB(b *testing.B) {
+	content, _ := os.ReadFile("testdata/json_lines_10MB.json")
+	contentString := string(content)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		Detect(contentString)
+	}
+}
+
+func BenchmarkDetectXML_SimpleString(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		Detect("<foo>bar</foo>")
+	}
+}
+
+func BenchmarkDetectXML_1KB(b *testing.B) {
+	content, _ := os.ReadFile("testdata/xml_1KB.xml")
+	contentString := string(content)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		Detect(contentString)
+	}
+}
+
+func BenchmarkDetectXML_100KB(b *testing.B) {
+	content, _ := os.ReadFile("testdata/xml_100KB.xml")
+	contentString := string(content)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		Detect(contentString)
+	}
+}
+
+func BenchmarkDetectXML_1MB(b *testing.B) {
+	content, _ := os.ReadFile("testdata/xml_1MB.xml")
+	contentString := string(content)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		Detect(contentString)
+	}
+}
+
+func BenchmarkDetectXML_10MB(b *testing.B) {
+	content, _ := os.ReadFile("testdata/xml_10MB.xml")
+	contentString := string(content)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		Detect(contentString)
+	}
+}
+
+func BenchmarkDetectCSV_SimpleString(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		Detect("foo,bar\nbaz,qux")
+	}
+}
+
+func BenchmarkDetectCSV_1KB(b *testing.B) {
+	content, _ := os.ReadFile("testdata/csv_1KB.csv")
+	contentString := string(content)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		Detect(contentString)
+	}
+}
+
+func BenchmarkDetectCSV_100KB(b *testing.B) {
+	content, _ := os.ReadFile("testdata/csv_100KB.csv")
+	contentString := string(content)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		Detect(contentString)
+	}
+}
+
+func BenchmarkDetectCSV_1MB(b *testing.B) {
+	content, _ := os.ReadFile("testdata/csv_1MB.csv")
+	contentString := string(content)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		Detect(contentString)
+	}
+}
+
+func BenchmarkDetectCSV_10MB(b *testing.B) {
+	content, _ := os.ReadFile("testdata/csv_10MB.csv")
+	contentString := string(content)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		Detect(contentString)
+	}
+}
+
+func BenchmarkDetectUnsupported_SimpleString(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		Detect("lorem ipsum dolor sit amet")
 	}
 }

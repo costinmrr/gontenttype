@@ -104,3 +104,40 @@ XML syntax error on line 1: unexpected EOF
 <nil>
 record on line 2: wrong number of fields
 ```
+
+
+## Benchmarks
+
+```shell
+go test -bench=.
+```
+
+#### Output
+
+```shell
+goos: darwin
+goarch: arm64
+pkg: github.com/costinmrr/gontenttype
+cpu: Apple M1 Pro
+BenchmarkDetectJSON_SimpleString-8               3261396               362.7 ns/op
+BenchmarkDetectJSON_1KB-8                         125338              9585 ns/op
+BenchmarkDetectJSON_100KB-8                         1310            909954 ns/op
+BenchmarkDetectJSON_1MB-8                            153           7776861 ns/op
+BenchmarkDetectJSON_10MB-8                            14          77368839 ns/op
+BenchmarkDetectJSONLines_SimpleString-8           764656              1426 ns/op
+BenchmarkDetectJSONLines_1KB-8                  12037003                99.02 ns/op
+BenchmarkDetectJSONLines_100KB-8                12053284                98.60 ns/op
+BenchmarkDetectJSONLines_1MB-8                  12237555                98.79 ns/op
+BenchmarkDetectJSONLines_10MB-8                 12056943                98.68 ns/op
+BenchmarkDetectXML_SimpleString-8                1545378               775.3 ns/op
+BenchmarkDetectXML_1KB-8                           45462             26035 ns/op
+BenchmarkDetectXML_100KB-8                           511           2334531 ns/op
+BenchmarkDetectXML_1MB-8                              48          24450518 ns/op
+BenchmarkDetectXML_10MB-8                              5         248890150 ns/op
+BenchmarkDetectCSV_SimpleString-8                 679507              1603 ns/op
+BenchmarkDetectCSV_1KB-8                           56437             20994 ns/op
+BenchmarkDetectCSV_100KB-8                           648           1887705 ns/op
+BenchmarkDetectCSV_1MB-8                              58          20405615 ns/op
+BenchmarkDetectCSV_10MB-8                              6         194822194 ns/op
+BenchmarkDetectUnsupported_SimpleString-8         748053              1501 ns/op
+```
