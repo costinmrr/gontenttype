@@ -37,6 +37,11 @@ func TestDetect(t *testing.T) {
 			want: JSON,
 		},
 		{
+			name: "json lines",
+			args: args{content: "{\"foo\":\"bar\"}\n{\"baz\":\"qux\"}\n{\"quux\":\"quuz\"}"},
+			want: JSONLines,
+		},
+		{
 			name: "xml",
 			args: args{content: "<foo>bar</foo>"},
 			want: XML,
