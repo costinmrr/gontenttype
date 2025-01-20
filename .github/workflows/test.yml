@@ -16,3 +16,5 @@ jobs:
           go-version-file: ./go.mod
       - name: test
         run: make test
+#      - name: benchmark
+#        run: make benchmark

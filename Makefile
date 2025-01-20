@@ -9,6 +9,9 @@ build:
 test:
 	go test -v ./...
 
+benchmark:
+	go test -bench=.
+
 fmt:
 	go fmt ./...
 
