@@ -141,3 +141,31 @@ BenchmarkDetectCSV_1MB-8                              58          20405615 ns/op
 BenchmarkDetectCSV_10MB-8                              6         194822194 ns/op
 BenchmarkDetectUnsupported_SimpleString-8         748053              1501 ns/op
 ```
+
+```shell
+goos: linux
+goarch: amd64
+pkg: github.com/costinmrr/gontenttype
+cpu: AMD EPYC 7763 64-Core Processor                
+BenchmarkDetectJSON_SimpleString-4          	 2135098	       580.3 ns/op
+BenchmarkDetectJSON_1KB-4                   	   89289	     13288 ns/op
+BenchmarkDetectJSON_100KB-4                 	     901	   1303257 ns/op
+BenchmarkDetectJSON_1MB-4                   	     100	  10029120 ns/op
+BenchmarkDetectJSON_10MB-4                  	       9	 111325401 ns/op
+BenchmarkDetectJSONLines_SimpleString-4     	  503854	      2244 ns/op
+BenchmarkDetectJSONLines_1KB-4              	 9440169	       127.4 ns/op
+BenchmarkDetectJSONLines_100KB-4            	 9543016	       129.8 ns/op
+BenchmarkDetectJSONLines_1MB-4              	 9292095	       126.8 ns/op
+BenchmarkDetectJSONLines_10MB-4             	 9430472	       127.0 ns/op
+BenchmarkDetectXML_SimpleString-4           	  465271	      2395 ns/op
+BenchmarkDetectXML_1KB-4                    	   30892	     38756 ns/op
+BenchmarkDetectXML_100KB-4                  	     348	   3417666 ns/op
+BenchmarkDetectXML_1MB-4                    	      31	  36768652 ns/op
+BenchmarkDetectXML_10MB-4                   	       3	 343983510 ns/op
+BenchmarkDetectCSV_SimpleString-4           	  363416	      3219 ns/op
+BenchmarkDetectCSV_1KB-4                    	   42157	     29058 ns/op
+BenchmarkDetectCSV_100KB-4                  	     447	   2558199 ns/op
+BenchmarkDetectCSV_1MB-4                    	      30	  34082715 ns/op
+BenchmarkDetectCSV_10MB-4                   	       4	 302733827 ns/op
+BenchmarkDetectUnsupported_SimpleString-4   	  331250	      3157 ns/op
+```
