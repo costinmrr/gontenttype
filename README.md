@@ -138,6 +138,8 @@ error on line 2: unexpected end of JSON input
 <nil>
 XML syntax error on line 1: unexpected EOF
 <nil>
+record on line 2: wrong number of fields
+<nil>
 invalid parquet file: reading footer of parquet file: strings.Reader.ReadAt: negative offset
 ```
 
