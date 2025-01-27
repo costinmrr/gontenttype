@@ -8,4 +8,5 @@ const (
 	JSONLines   ContentType = "application/jsonl"
 	XML         ContentType = "application/xml"
 	CSV         ContentType = "text/csv"
+	Parquet     ContentType = "application/vnd.apache.parquet"
 )

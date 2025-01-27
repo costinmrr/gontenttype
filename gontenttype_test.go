@@ -6,6 +6,8 @@ import (
 )
 
 func TestDetect(t *testing.T) {
+	parquetContentBytes, _ := os.ReadFile("./testdata/weather.parquet")
+
 	type args struct {
 		content string
 	}
@@ -48,6 +50,11 @@ func TestDetect(t *testing.T) {
 			name: "xml",
 			args: args{content: "<foo>bar</foo>"},
 			want: XML,
+		},
+		{
+			name: "parquet",
+			args: args{content: string(parquetContentBytes)},
+			want: Parquet,
 		},
 	}
 	for _, tt := range tests {
@@ -231,5 +238,23 @@ func BenchmarkDetectCSV_10MB(b *testing.B) {
 func BenchmarkDetectUnsupported_SimpleString(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		Detect("lorem ipsum dolor sit amet")
+	}
+}
+
+func BenchmarkDetectParquet_16KB(b *testing.B) {
+	content, _ := os.ReadFile("testdata/weather.parquet")
+	contentString := string(content)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		Detect(contentString)
+	}
+}
+
+func BenchmarkDetectParquet_6point5MB(b *testing.B) {
+	content, _ := os.ReadFile("testdata/flights-1m.parquet")
+	contentString := string(content)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		Detect(contentString)
 	}
 }

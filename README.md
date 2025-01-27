@@ -5,6 +5,7 @@
    2. JSON Lines (`application/jsonl`)
    3. XML (`application/xml`)
    4. CSV (`text/csv`)
+   5. Parquet (`application/vnd.apache.parquet`)
 
 2. **Validate syntax for a given string and supported content types**
 
@@ -44,6 +45,11 @@ func main() {
 	myStr = `foo,bar`
 	contentType = gontenttype.Detect(myStr)
 	fmt.Println(contentType) // text/csv
+	
+	// parquet
+	myStr = `PAR1...[parquet content]...PAR1` // use a valid parquet content
+    contentType = gontenttype.Detect(myStr)
+	fmt.Println(contentType) // application/vnd.apache.parquet
 }
 ```
 
@@ -54,6 +60,7 @@ application/json
 application/jsonl
 application/xml
 text/csv
+application/vnd.apache.parquet
 ```
 
 ## Validate syntax
@@ -70,6 +77,7 @@ import (
 	"github.com/costinmrr/gontenttype/types/jsonlines"
 	"github.com/costinmrr/gontenttype/types/xml"
 	"github.com/costinmrr/gontenttype/types/csv"
+	"github.com/costinmrr/gontenttype/types/parquet"
 )
 
 func main() {
@@ -108,6 +116,15 @@ func main() {
 	myStr = "col1,col2\nfoo,bar,baz"
 	err = csv.IsCSV(myStr)
 	fmt.Println(err) // record on line 2: wrong number of fields
+	
+	// parquet
+	myStr = `PAR1...[parquet content]...PAR1` // use a valid parquet content
+    err = parquet.IsParquet(myStr)
+	fmt.Println(err) // <nil>
+	
+	myStr = `PAR1invalidPAR1`
+	err = parquet.IsParquet(myStr)
+	fmt.Println(err) // invalid parquet file: reading footer of parquet file: strings.Reader.ReadAt: negative offset
 }
 ```
 
@@ -122,6 +139,8 @@ error on line 2: unexpected end of JSON input
 XML syntax error on line 1: unexpected EOF
 <nil>
 record on line 2: wrong number of fields
+<nil>
+invalid parquet file: reading footer of parquet file: strings.Reader.ReadAt: negative offset
 ```
 
 

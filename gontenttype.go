@@ -4,6 +4,7 @@ import (
 	"github.com/costinmrr/gontenttype/types/csv"
 	"github.com/costinmrr/gontenttype/types/json"
 	"github.com/costinmrr/gontenttype/types/jsonlines"
+	"github.com/costinmrr/gontenttype/types/parquet"
 	"github.com/costinmrr/gontenttype/types/xml"
 )
 
@@ -26,6 +27,11 @@ func Detect(content string) ContentType {
 	err = csv.IsCSV(content)
 	if err == nil {
 		return CSV
+	}
+
+	err = parquet.IsParquet(content)
+	if err == nil {
+		return Parquet
 	}
 
 	return Unsupported
