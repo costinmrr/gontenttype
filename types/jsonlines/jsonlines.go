@@ -3,12 +3,8 @@ package jsonlines
 import (
 	"bufio"
 	"encoding/json"
-	"errors"
-	"fmt"
 	"strings"
 )
-
-var ErrEmptyContent = errors.New("content is empty")
 
 // IsJSONLines returns true if the content is a JSON Lines.
 // JSON Lines is a text format where each line is a valid JSON object. Read more at https://jsonlines.org.
@@ -31,8 +27,4 @@ func IsJSONLines(content string) error {
 	}
 
 	return nil
-}
-
-func errorOnLine(lineNo int, err error) error {
-	return errors.New("error on line " + fmt.Sprintf("%d", lineNo) + ": " + err.Error())
 }
